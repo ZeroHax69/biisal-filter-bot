@@ -1297,7 +1297,7 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
                for file in files
               ]
     if offset != "":
-        if total_results >= 3:
+        if total_results >= MAX_BTN:
             btn.insert(0,[
                 InlineKeyboardButton("🎭 ᴄʜᴏᴏsᴇ ʟᴀɴɢᴜᴀɢᴇ ✨", callback_data=f"languages#{key}#{offset}#{req}"),
                 ])
@@ -1313,34 +1313,19 @@ async def auto_filter(client, msg, spoll=False , pm_mode = False):
                 ])
         else:
             btn.insert(0,[
-        InlineKeyboardButton("🎭 ᴄʜᴏᴏsᴇ ʟᴀɴɢᴜᴀɢᴇ ✨", callback_data=f"languages#{key}#{offset}#{req}"),
-        ])
-            btn.insert(1, [
-                InlineKeyboardButton("✨ ǫᴜᴀʟɪᴛʏ 🤡", callback_data=f"qualities#{key}#{offset}#{req}"),
-                InlineKeyboardButton("🚩 ʏᴇᴀʀ ⌛", callback_data=f"years#{key}#{offset}#{req}"),
-            ])
-            btn.insert(2, [
-                InlineKeyboardButton("✨ ᴄʜᴏᴏsᴇ season🍿", callback_data=f"seasons#{key}#{offset}#{req}")
-            ])
-    else:
-        if total_results >= 3:
-            btn.insert(0,[
-                InlineKeyboardButton("🎭 ᴄʜᴏᴏsᴇ ʟᴀɴɢᴜᴀɢᴇ ✨", callback_data=f"languages#{key}#{offset}#{req}"),
-                ])
-            btn.insert(1, [
-                InlineKeyboardButton("✨ ǫᴜᴀʟɪᴛʏ 🤡", callback_data=f"qualities#{key}#{offset}#{req}"),
-                InlineKeyboardButton("🚩 ʏᴇᴀʀ ⌛", callback_data=f"years#{key}#{offset}#{req}"),
-            ])
-            btn.insert(2, [
-                InlineKeyboardButton("✨ ᴄʜᴏᴏsᴇ season🍿", callback_data=f"seasons#{key}#{offset}#{req}")
-            ])
-            btn.insert(3,[
                 InlineKeyboardButton("♻️ sᴇɴᴅ ᴀʟʟ", callback_data=batch_link),
-                ])
-        else:
-            btn.insert(0,[
+            ])
+            btn.insert(1,[
                 InlineKeyboardButton("No More Pages", user_id=ADMINS[0])
             ])
+    else:
+        btn.insert(0,[
+            InlineKeyboardButton("♻️ sᴇɴᴅ ᴀʟʟ", callback_data=batch_link),
+            ])
+
+        btn.insert(1,[
+            InlineKeyboardButton("No More Pages", user_id=ADMINS[0])
+        ])
                              
     if spoll:
         m = await msg.message.edit(f"<b><code>{search}</code> ɪs ꜰᴏᴜɴᴅ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ꜰᴏʀ ꜰɪʟᴇs 📫</b>")
